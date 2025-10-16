@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            Common code                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Adds support for modern:                                          %
+% - C                                                                %
+% - C++                                                              %
+% - Python                                                           %
+% - Bash                                                             %
+% - SystemVerilog                                                    %
+% - OCaml                                                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ccode}[2025/01/01 ccode]
+
+\RequirePackage{cincludes} % ALL REQUIRED PACKAGES
+
+\newcommand{\noncopynumber}[1]{ % keep line numbers from being copied in code listings
+  \BeginAccSupp{method=escape,ActualText={}}
+  #1
+  \EndAccSupp{}
+}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeyellow}{rgb}{0.51, 0.37, 0.012}
+
+% ------------------------------
+% Modern language support
+% ------------------------------
+\lstdefinelanguage{cpp}{
+  keywords={auto, break, case, char, const, continue, default, do, double, else, enum, extern,
+      float, for, goto, if, inline, int, long, register, restrict, return, short, signed,
+      sizeof, static, struct, switch, typedef, union, unsigned, void, volatile, while,
+      alignas, alignof, and, and_eq, asm, bitand, bitor, bool, catch, class, compl, constexpr,
+      decltype, delete, dynamic_cast, explicit, export, false, friend, mutable, namespace,
+      new, noexcept, not, not_eq, nullptr, operator, or, or_eq, private, protected, public,
+      reinterpret_cast, static_assert, static_cast, template, this, thread_local, throw,
+      true, try, typeid, typename, using, virtual, wchar_t, xor, xor_eq},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{python}{
+  keywords={False, None, True, and, as, assert, async, await, break, class, continue,
+      def, del, elif, else, except, finally, for, from, global, if, import, in,
+      is, lambda, nonlocal, not, or, pass, raise, return, try, while, with, yield},
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]',
+  morestring=[b]",
+  morestring=[b]''',
+  morestring=[b]"""
+}
+
+\lstdefinelanguage{systemverilog}{
+  keywords={always, and, assign, automatic, begin, buf, bufif0, bufif1, case, casex, casez,
+      cell, cmos, config, deassign, default, defparam, design, disable, edge, else,
+      end, endcase, endconfig, endfunction, endgenerate, endmodule, endpackage,
+      endprimitive, endspecify, endtable, endtask, event, for, force, forever, fork,
+      function, generate, genvar, highz0, highz1, if, ifnone, initial, inout, input,
+      instance, integer, join, large, liblist, library, localparam, macromodule, medium,
+      module, nand, negedge, nmos, nor, not, notif0, notif1, or, output, parameter, pmos,
+      posedge, primitive, pull0, pull1, pulldown, pullup, rcmos, real, realtime, reg,
+      release, repeat, rnmos, rpmos, rtran, rtranif0, rtranif1, scalared, small, specify,
+      specparam, strong0, strong1, supply0, supply1, table, task, time, tran, tranif0,
+      tranif1, tri, tri0, tri1, triand, trior, trireg, unsigned, use, uwire, vectored,
+      wait, wand, weak0, weak1, while, wire, wor, xnor, xor},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{matlab}{
+  keywords={break, case, catch, classdef, continue, else, elseif, end, for, function,
+      global, if, otherwise, parfor, persistent, return, spmd, switch, try, while},
+  sensitive=true,
+  morecomment=[l]{\%},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{bash}{
+  keywords={alias, bg, bind, break, builtin, caller, cd, command, compgen, complete,
+      continue, declare, dirs, disown, echo, enable, eval, exec, exit, export, false,
+      fg, getopts, hash, help, history, if, jobs, kill, let, local, logout, popd,
+      printf, pushd, pwd, read, readonly, return, set, shift, shopt, source, test, times,
+      trap, true, type, typeset, ulimit, umask, unalias, unset, wait, while},
+  sensitive=true,
+  morecomment=[l]{\#},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{OCaml}{
+  keywords={
+      and, as, assert, asr, begin, class, constraint, do, done, downto, else, end, exception, external,
+      false, for, fun, function, functor, if, in, include, inherit, initializer, land, lazy, let, lor,
+      lsl, lsr, lxor, match, method, mod, module, mutable, new, object, of, open, or, private, rec,
+      sig, struct, then, to, true, try, type, val, virtual, when, while, with
+    },
+  sensitive=true,
+  morecomment=[l]{(*},
+  morecomment=[s]{(*}{*)},
+  morestring=[b]"`
+}
