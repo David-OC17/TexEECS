@@ -4,34 +4,9 @@
 
 \ProvidesPackage{cbasics}[2025/01/01 cbasics]
 
-\RequirePackage{accsupp}
-\usepackage{enumitem}
-\RequirePackage[hidelinks]{hyperref}  % clean hyperlinks
-
 % ------------------------------
 % Common symbols
 % ------------------------------
 \newcommand*{\eg}{\leavevmode\unskip , e. g., \ignorespaces}
 \newcommand*{\ie}{\leavevmode\unskip, i. e., \ignorespaces}
 \newcommand{\nil}{\varnothing}
-
-%----------------------------------------------------------
-% Article variables
-%----------------------------------------------------------
-% \gdef\@author{\empty}
-% \gdef\@keywords{\empty}
-% \gdef\@professor{\empty}
-% \gdef\@bibfile{\empty}
-% \gdef\@class{\empty}
-% \gdef\@title{\empty}
-% \gdef\@institution{\empty}
-% \gdef\@course{\empty}
-
-\newcommand{\institution}[1]{\gdef\@institution{#1}}
-\newcommand{\course}[1]{\gdef\@course{#1}}
-\newcommand{\professor}[1]{\gdef\@professor{#1}}
-\renewcommand{\title}[1]{\gdef\@title{#1}}
-\newcommand{\keywords}[1]{\gdef\@keywords{#1}}
-\newcommand{\bibfile}[1]{\gdef\@bibfile{#1}}
-\newcommand{\class}[1]{\gdef\@class{#1}}
-\renewcommand{\author}[1]{\gdef\@author{#1}}
