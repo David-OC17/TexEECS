@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                Resume Features                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesClass{resumeinclude}[2025/01/01 Resume Include]
+
+\RequirePackage{cbasics}
+
+% ------------------------------
+% Required packages
+% ------------------------------
+\RequirePackage{enumitem}             % control over lists
+\RequirePackage{tabularx}             % extended tabular with flexible width
+
+% ------------------------------
+% Custom commands
+% ------------------------------
+% Resume item
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+
+% Start/end item list for resume items
+\newcommand{\resumeItemListStart}{\begin{itemize}[rightmargin=0.11in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% Section type: label and description
+\newcommand{\resumeSectionType}[3]{%
+  \item
+  \begin{tabular*}{0.96\textwidth}[t]{p{0.15\linewidth}p{0.02\linewidth}p{0.81\linewidth}}
+    \textbf{#1} & #2 & #3
+  \end{tabular*}\vspace{-2pt}%
+}
+
+% Three-column heading
+\newcommand{\resumeTrioHeading}[3]{%
+  \item\small{
+    \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}c@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{#2} & #3
+    \end{tabular*}
+  }%
+}
+
+% Four-element heading
+\newcommand{\resumeQuadHeading}[4]{%
+  \item
+  \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}%
+}
+
+% Child for four-element heading
+\newcommand{\resumeQuadHeadingChild}[2]{%
+  \item
+  \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{\small#1} & {\small#2} \\
+  \end{tabular*}%
+}
+
+% Start/end itemization for quad headings
+\newcommand{\resumeHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeHeadingListEnd}{\end{itemize}}
+
+% ------------------------------
+% Redefinitions
+% ------------------------------
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\ULdepth}{2pt}

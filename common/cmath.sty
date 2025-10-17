@@ -1,0 +1,100 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cmath}[2025/01/01 cmath]
+
+\RequirePackage{algorithmicx}
+\RequirePackage{algorithm}
+\RequirePackage{amscd}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+
+% ------------------------------
+% Commands for common math fonts
+% ------------------------------
+\DeclareRobustCommand{\bb}[1]{\mathbb{#1}}
+\DeclareRobustCommand{\cal}[1]{\mathcal{#1}}
+% \DeclareRobustCommand{\sc}[1]{\textsc{#1}}
+
+\DeclareMathOperator{\D}{d} % Differential operator
+\renewcommand{\qedsymbol}{$_{\scriptstyle \substack{\sc{quod}\\\sc{erat}\\\sc{dem}\scalebox{0.53}{$\blacksquare$}}}$}
+
+% ------------------------------
+% Enumerations
+% ------------------------------
+% Beamer does not define \labelenumi, so we redefine it
+\def\labelenumi{\theenumi)}  % 1) 2) 3) ...
+
+% ------------------------------
+% Common math operators & symbols
+% ------------------------------
+
+% Arrows & logic
+\newcommand{\ra}{\rightarrow}                 % right arrow
+\newcommand{\Ra}{\Rightarrow}                 % implication
+\providecommand{\implies}{\Rightarrow}        % logical implication
+\providecommand{\iff}{\Leftrightarrow}        % if and only if
+
+% Relations & equivalence
+\newcommand{\?}{\stackrel{?}{=}}              % equality check
+\newcommand{\is}{\equiv}                      % equivalence
+\newcommand{\suchthat}{\mid}                  % set-builder separator
+\providecommand{\subseteq}{\subseteq}             % subset or equal
+\providecommand{\supseteq}{\supseteq}             % superset or equal
+
+% Greek letters & constants
+\newcommand{\al}{\alpha}
+\newcommand{\ep}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+
+% Calculus & derivatives
+\newcommand{\p}{\partial}                    % partial derivative
+\providecommand{\D}{\mathrm{d}}                  % total derivative symbol
+\newcommand{\dx}{\,\mathrm{d}x}              % dx
+\newcommand{\dy}{\,\mathrm{d}y}              % dy
+\newcommand{\dz}{\,\mathrm{d}z}              % dz
+\newcommand{\derivative}[2][x]{\frac{\D #2}{\D #1}} % derivative
+
+% Functions / operators
+\newcommand{\grad}{\nabla}                    % gradient
+\newcommand{\divergence}{\nabla \cdot}        % divergence
+\newcommand{\curlop}{\nabla \times}           % curl
+\newcommand{\laplace}{\Delta}                 % Laplacian
+
+% Mappings
+\newcommand{\injective}{\hookrightarrow}     % injective
+\newcommand{\surjective}{\twoheadrightarrow} % surjective
+\newcommand{\bijective}{\hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow} % bijective
+
+% Common sets / fields
+\newcommand{\R}{\bb{R}}                       % real numbers
+\newcommand{\Q}{\bb{Q}}                       % rational numbers
+\newcommand{\Z}{\bb{Z}}                       % integers
+\newcommand{\N}{\bb{N}}                       % natural numbers
+\newcommand{\C}{\bb{C}}                       % Complex numbers
+\renewcommand{\P}{\bb{P}}                     % prime numbers
+\newcommand{\F}{\bb{F}}                       % generic field
+\newcommand{\GF}[1][2]{\bb{F}_{#1}}           % Galois Field
+\newcommand{\modulo}[1][n]{\Z/#1\Z}           % modulo class n
+
+% Grouping & sizing
+\newcommand{\abs}[1]{\left|#1\right|}               % absolute value
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}    % norm
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}    % ceiling
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor} % floor
+\newcommand{\set}[1]{\left\{#1\right\}}             % set braces
+\newcommand{\paren}[1]{\left(#1\right)}             % parentheses
+\newcommand{\brk}[1]{\left[#1\right]}               % brackets
+\newcommand{\ang}[1]{\left\langle#1\right\rangle}   % angle brackets
+
+% ------------------------------
+% Delimiters
+% ------------------------------
+\providecommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\providecommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\near}[1]{\left\lfloor #1 \right\rceil}
+\newcommand{\arr}[1]{\left\langle #1 \right\rangle}
+\providecommand{\paren}[1]{\left( #1 \right)}
+\providecommand{\brk}[1]{\left[ #1 \right]}
+\providecommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\curl}[1]{\left\{ #1 \right\}}

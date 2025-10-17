@@ -2,85 +2,30 @@
 %                          Report Template                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\ProvidesClass{report}[2025/01/01 report]
+\RequirePackage{include/reportinclude}
+
 %----------------------------------------------------------
 % Article class requirements
 %----------------------------------------------------------
 
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tau}[2024/03/15 Tau-book LaTeX class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions\relax
 \LoadClass[twocolumn]{extarticle}
 
 %----------------------------------------------------------
-% Required packages
-%----------------------------------------------------------
-
-\usepackage{adjustbox}
-\usepackage{adforn}
-\usepackage{lastpage}
-
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{etoolbox}
-\RequirePackage[framemethod=tikz]{mdframed}
-\RequirePackage{titling}
-\RequirePackage{lettrine}
-\RequirePackage{microtype}
-\RequirePackage[bottom,hang,flushmargin,ragged,symbol*]{footmisc}
-\RequirePackage{fancyhdr}
-\RequirePackage{xifthen}
-\RequirePackage[explicit]{titlesec}
-\RequirePackage{caption}
-\RequirePackage{setspace}
-\RequirePackage{iflang}
-\RequirePackage{listings}
-\RequirePackage{pbalance}
-
-%----------------------------------------------------------
-% Font used
-%----------------------------------------------------------
-
-\usepackage{stix2}
-\RequirePackage[scaled]{helvet}
-\renewcommand{\ttdefault}{lmtt}
-
-%----------------------------------------------------------
 % Graphics path and lengths
 %----------------------------------------------------------
 
+\setlist{noitemsep}
 \setlength{\columnsep}{15pt}
-\graphicspath{{Figures/}{./}} 
-% \renewcommand{\baselinestretch}{1}    % To change the line spacing
-
-%----------------------------------------------------------
-% New commands
-%----------------------------------------------------------
-
-\newcommand{\professor}[1]{\def\@professor{#1}}
-\newcommand{\keywords}[1]{\def\@keywords{#1}}
-
-%----------------------------------------------------------
-% Geometry package setup
-%----------------------------------------------------------
-
-\RequirePackage[
-	left=1.25cm,
-	right=1.25cm,
-	top=2cm,
-	bottom=2cm,
-    headsep=0.75cm,
-	% showframe
-]{geometry}
 
 %----------------------------------------------------------
 % Header and footer 
 %----------------------------------------------------------
 
 \newcommand{\footerfont}{\normalfont\sffamily\fontsize{7}{9}\selectfont}
-\newcommand{\institution}[1]{\def\@institution{#1}}
-\newcommand{\ftitle}[1]{\def\@ftitle{#1}}
-\newcommand{\etal}[1]{\def\@etal{#1}}
-\newcommand{\course}[1]{\def\@course{#1}}
+
 \pagestyle{fancy}
 
 \pagenumbering{Roman}
@@ -109,8 +54,8 @@
 \fancyfoot[RO]{\footerfont\@institution \hspace{10pt} \textbf{\@date} \hspace{10pt} \@ftitle \hspace{10pt} \textbf{\thepage}}
 \fancyfoot[RE,LO]{\footerfont\@ifundefined{@etal}{}{\itshape\@etal}\ifnum \value{authors} > 1\hspace{5pt}\textit{}\fi}
 
-\renewcommand{\headrulewidth}{0pt}% % No header rule
-\renewcommand{\footrulewidth}{0pt}% % No footer rule
+\renewcommand{\headrulewidth}{0pt} % No header rule
+\renewcommand{\footrulewidth}{0pt} % No footer rule
 
 %----------------------------------------------------------
 % Tau start (lettrine)
@@ -123,14 +68,10 @@
 % Abstract preferences
 %----------------------------------------------------------
 
-% Abstract font
-\newcommand{\absfont}{\selectfont\small\color{taublue}\sffamily\bfseries}
-% Abstract text font
-\newcommand{\abstextfont}{\selectfont\small\itshape}
-% Keyword font
-\newcommand{\keywordsfont}{\selectfont\small\color{taublue}\sffamily\bfseries}
-% Keyword font text
-\newcommand{\keywordsfonttext}{\selectfont\small\itshape}
+\newcommand{\absfont}{\selectfont\small\color{taublue}\sffamily\bfseries}      % Abstract font
+\newcommand{\abstextfont}{\selectfont\small\itshape}                           % Abstract text font
+\newcommand{\keywordsfont}{\selectfont\small\color{taublue}\sffamily\bfseries} % Keyword font
+\newcommand{\keywordsfonttext}{\selectfont\small\itshape}											 % Keyword font text
 
 \def\xabstract{abstract}
 \long\def\abstract#1\end#2{\def\two{#2}\ifx\two\xabstract 
@@ -295,69 +236,6 @@
 \renewcommand\lstlistlistingname{Code}
 
 %----------------------------------------------------------
-% Listings defined styles (codes)
-%----------------------------------------------------------
-
-% Defined colors for listings environment
-\definecolor{taucodeback}{RGB}{248, 248, 248}  
-\definecolor{taucodecomment}{RGB}{1, 136, 0}
-\definecolor{taucodekey}{RGB}{53, 53, 128}
-\definecolor{taucodestring}{RGB}{122, 36, 47}
-\definecolor{taugray}{RGB}{0.5,0.5,0.5}
-\definecolor{tauredmatlab}{RGB}{199, 78, 0}
-
-% Matlab
-\lstset{language=Matlab,
-    backgroundcolor=\color{taucodeback},   
-	commentstyle=\color{taucodecomment},
-	keywordstyle=\bf\color{taucodekey},
-	numberstyle=\tiny\color{taugray},
-	stringstyle=\color{taucodestring},
-	basicstyle=\footnotesize\ttfamily,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,          		
-	numbers=left,                   % if "none" change the values
-	numbersep=5pt,                  % 0pt
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2,
-	aboveskip=10pt,
-	belowskip=15pt,
-	xleftmargin=9pt,				% 0pt
-	rulecolor=\color{taugray},
-	emph=[1]{for,end,break},emphstyle=[1]\color{tauredmatlab}
-}
-
-% General
-\lstdefinestyle{taucoding}{
-    backgroundcolor=\color{taucodeback},   
-    commentstyle=\color{taucodecomment},
-    keywordstyle=\bf\color{taucodekey},
-    numberstyle=\tiny\color{taugray},
-    stringstyle=\color{taucodestring},
-    basicstyle=\footnotesize\ttfamily,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,				 	% if "none" change the values  
-    numbersep=5pt,    				% 0pt              
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
-    aboveskip=10pt,
-    belowskip=15pt,
-    xleftmargin=9pt,				% 0pt
-    rulecolor=\color{taugray},
-}
-
-\lstset{style=taucoding}
-
-%----------------------------------------------------------
 % Footnotes
 %----------------------------------------------------------
 
@@ -388,7 +266,7 @@
     sorting=ynt
 ]{biblatex}
 
-\addbibresource{tau.bib}
+\addbibresource{@bibfile.bib}
 
 %----------------------------------------------------------
 

@@ -1,0 +1,164 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{homeworkinclude}[2024/01/01 homework include]
+
+% ===========================
+% Packages
+% ===========================
+\RequirePackage{graphicx}
+\RequirePackage{needspace}               % dynamic line breaking
+\RequirePackage{hyperref}                % pdf bookmarks, other info
+\RequirePackage{pgffor, ifthen}          % loops and if statements
+\RequirePackage[caption=false]{subfig}
+\RequirePackage[tableposition=below]{caption} % caption positioning
+
+\RequirePackage{listings, xcolor, accsupp} % code listings
+\RequirePackage{amsmath, amssymb, amsthm, amscd} % math
+
+% ===========================
+% General Settings
+% ===========================
+\newlength{\unitskipamount}
+\setlength{\unitskipamount}{\medskipamount}
+\gdef\@unitname{Question}
+\gdef\solcolor{blue}
+\gdef\withinsolution{0}
+\newcounter{UnitCounter}
+
+\newcommand{\setunitname}[1]{\gdef\@unitname{#1}}
+\newcommand{\setsolcolor}[1]{\gdef\solcolor{#1}}
+
+% ===========================
+% Question Command
+% ===========================
+\newcommand{\question}[1][\arabic{UnitCounter}]{%
+  \Needspace*{8\baselineskip}%
+  \addvspace{\unitskipamount}%
+  \def\@currentlabel{#1}%
+  \ifthenelse{\equal{#1}{\value{UnitCounter}}}{\stepcounter{UnitCounter}}{}%
+  \setcounter{section}{0}%
+  \renewcommand{\thesection}{#1.\arabic{section}}%
+  \renewcommand{\theHsection}{#1.\the\value{section}}%
+  \addcontentsline{toc}{part}{#1. \@unitname{}}%
+  \noindent\textbf{\@unitname{} #1. }\ignorespaces%
+}
+
+% ===========================
+% Figures
+% ===========================
+\newcommand{\fig}[4][0.4]{%
+  \begin{figure}[hbtp]
+    \centering
+    \foreach \path in {#2} {
+        \begin{minipage}{#1\textwidth}
+          \subfloat{\includegraphics[width=\linewidth]{\path}}
+        \end{minipage}
+      }
+    \caption{#3}\label{#4}
+  \end{figure}
+}
+
+\NewDocumentCommand\img{d<>O{0.4}mm}{%
+  \begin{figure}[hbtp]%
+    \centering
+    \foreach \path [count=\i] in {#4} {%
+        \ifthenelse{\equal{\i}{1}}{}{\hspace{0.25cm}}%
+        \begin{minipage}{#2\textwidth}%
+          \subfloat{\includegraphics[width=\linewidth]{\path}}%
+        \end{minipage}%
+      }%
+    \caption{#3}\IfValueT{#1}{\label{#1}}%
+  \end{figure}%
+}
+
+% ===========================
+% Solutions Environment
+% ===========================
+\ExplSyntaxOn
+\definecolor{darkmode-fore}{HTML}{DFDFDF}
+\definecolor{darkmode-back}{HTML}{282C34}
+
+\NewDocumentCommand{\darkmode}{}{%
+  \pagecolor{darkmode-back}
+  \color{darkmode-fore}
+}
+
+\NewDocumentEnvironment{sol}{O{\solcolor}}{%
+  \gdef\withinsolution{1}%
+  \begin{color}{\solcolor}\ignorespaces%
+    }{%
+    \gdef\withinsolution{0}\end{color}\ignorespacesafterend%
+}
+\ExplSyntaxOff
+
+% ===========================
+% Font Commands
+% ===========================
+\NewDocumentCommand{\acmfonts}{}{%
+  \usepackage[T1]{fontenc}
+  \usepackage[tt=false, type1=true]{libertine}
+  \usepackage[varqu]{zi4}
+  \usepackage[libertine]{newtxmath}
+}
+
+\NewDocumentCommand{\printfonts}{}{%
+  \let\phi\undefined
+  \usepackage{libris}%
+  \renewcommand*\familydefault{\sfdefault}
+  \usepackage[euler-digits,euler-hat-accent,T1]{eulervm}
+}
+
+% ===========================
+% Tables
+% ===========================
+\ExplSyntaxOn
+\seq_new:N \l__scribe_tbl_body_seq
+\seq_new:N \l__scribe_tbl_row_seq
+\int_new:N \l__scribe_tbl_cols_int
+
+\cs_new_protected:Nn \scribe_tbl:n {%
+  \seq_set_split:Nnn \l__scribe_tbl_body_seq { \\ } { #1 }
+  \seq_pop_right:NN \l__scribe_tbl_body_seq \l_tmpa_tl
+  \tl_if_empty:NF \l_tmpa_tl { \seq_put_right:NV \l__scribe_tbl_body_seq \l_tmpa_tl }
+  \int_zero:N \l__scribe_tbl_cols_int
+  \seq_map_inline:Nn \l__scribe_tbl_body_seq {
+    \seq_set_split:Nnn \l__scribe_tbl_row_seq { & } { ##1 }
+    \int_set:Nn \l__scribe_tbl_cols_int {
+      \int_max:nn { \l__scribe_tbl_cols_int } { \seq_count:N \l__scribe_tbl_row_seq }
+    }
+  }
+  \begin{tabular}{ ||*{\l__scribe_tbl_cols_int}{c|}| }
+    \hline
+    \seq_use:Nn \l__scribe_tbl_body_seq { \\ \hline }
+    \\ \hline
+  \end{tabular}
+}
+\ExplSyntaxOff
+
+\NewDocumentCommand\tbl{d<>mm}{%
+  \if\withinsolution1
+    \begin{table}[hbtp]%
+      \centering%
+      \begin{color}{\solcolor}%
+        \scribe_tbl:n { #3 }%
+      \end{color}%
+      \captionsetup{labelfont={color=\solcolor},font={color=\solcolor}}
+      \caption{#2}%
+      \IfValueT{#1}{\label{#1}}%
+    \end{table}%
+  \else%
+    \begin{table}[hbtp]%
+      \centering%
+      \scribe_tbl:n { #3 }%
+      \caption{#2}%
+      \IfValueT{#1}{\label{#1}}%
+    \end{table}%
+  \fi
+}
+
+% ===========================
+% Math Commands
+% ===========================
+\RequirePackage{cmath}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}

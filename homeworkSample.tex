@@ -1,0 +1,90 @@
+\documentclass{homework}
+
+\author{Sample Student}
+\class{Intro to Examples}
+\title{Homework 1}
+\date{\today}
+
+\begin{document} \maketitle
+
+% ===========================
+% Question 1: Simple Proofs
+% ===========================
+\question Simple Theorems and Proofs
+Consider the following basic examples:
+
+\begin{theorem}
+For any integer $n$, $n^2 \geq 0$.
+\end{theorem}
+\begin{proof}
+Any integer squared is either zero or positive. 
+\end{proof}
+
+\begin{enumerate}[label=\alph*)]
+	\item Even or Odd
+	      \begin{theorem}
+		      Every integer is either even or odd.
+	      \end{theorem}
+	      \begin{sol}
+		      \begin{proof}
+			      Let $n$ be any integer. Define:
+			      \begin{itemize}
+				      \item Case 1: $n = 2k$ for some $k \in \mathbb{Z}$, then $n$ is even.
+				      \item Case 2: $n = 2k + 1$ for some $k \in \mathbb{Z}$, then $n$ is odd.
+			      \end{itemize}
+			      These cases cover all integers.
+		      \end{proof}
+	      \end{sol}
+
+	\item Positive Numbers
+	      \begin{theorem}
+		      There exists a positive integer less than 10.
+	      \end{theorem}
+	      \begin{sol}
+		      \begin{proof}
+			      Simply choose $n = 5$, which is positive and less than 10.
+		      \end{proof}
+	      \end{sol}
+\end{enumerate}
+
+% ===========================
+% Question 2: Spotting Errors
+% ===========================
+\question Identifying Mistakes
+\begin{enumerate}[label=\alph*)]
+	\item Consider a faulty induction attempt to prove that $n! > 0$ for $n \geq 0$. Spot the error.
+	      \begin{sol}
+		      The error occurs if the base case is skipped. For induction, we must verify $0! = 1 > 0$ first.
+	      \end{sol}
+
+	\item Another example: Assuming $n^2 > n$ for all $n$ without checking $n=0$.
+	      \begin{sol}
+		      The mistake is not considering $n=0$, for which $0^2 = 0 \not> 0$.
+	      \end{sol}
+\end{enumerate}
+
+% ===========================
+% Question 3: Simple State Machine
+% ===========================
+\question Simple State Machine
+Consider a counter that halves a number until it reaches zero.
+
+\begin{enumerate}[label=\alph*)]
+	\item Starting from $n=10$, show the sequence of states.
+	      \begin{sol}
+		      Sequence: $10 \to 5 \to 2 \to 1 \to 0$.
+	      \end{sol}
+
+	\item Define invariant $P(n) := n \geq 0$ and verify.
+	      \begin{sol}
+		      Base case: $n=10 \geq 0$.
+		      Step: Halving preserves non-negativity, so $P(n)$ holds for all transitions.
+	      \end{sol}
+
+	\item Explain termination.
+	      \begin{sol}
+		      Each transition decreases $n$, and the process stops when $n=0$. Hence, the state machine always terminates.
+	      \end{sol}
+\end{enumerate}
+
+\end{document}

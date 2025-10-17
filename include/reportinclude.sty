@@ -1,0 +1,141 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                Report Include                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{reportinclude}[2025/01/01 Report Include]
+
+%----------------------------------------------------------
+% Required packages
+%----------------------------------------------------------
+
+% My packages
+\RequirePackage{common/ccode}
+\RequirePackage{common/cgraphic}
+\RequirePackage{common/cbasics}
+\RequirePackage{common/ccolors}
+\RequirePackage{common/cmath}
+
+\usepackage{adjustbox}
+\usepackage{adforn}
+\usepackage{lastpage}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{etoolbox}
+\RequirePackage[framemethod=tikz]{mdframed}
+\RequirePackage{titling}
+\RequirePackage{lettrine}
+\RequirePackage{microtype}
+\RequirePackage[bottom,hang,flushmargin,ragged,symbol*]{footmisc}
+\RequirePackage{fancyhdr}
+\RequirePackage{xifthen}
+\RequirePackage[explicit]{titlesec}
+\RequirePackage{caption}
+\RequirePackage{setspace}
+\RequirePackage{iflang}
+\RequirePackage{pbalance}
+\usepackage{stix2}
+\RequirePackage[scaled]{helvet}
+\RequirePackage{fontawesome5}
+\usepackage{booktabs}
+\usepackage{array} 
+\RequirePackage{bookmark}
+\RequirePackage{ragged2e}
+\RequirePackage{lipsum}
+\RequirePackage{chemfig}         % Chemical structures
+\RequirePackage{circuitikz}      % Circuits schematics
+\usepackage[switch]{lineno}
+\usepackage{csquotes}
+\usepackage{supertabular}
+\usepackage{matlab-prettifier}
+\usepackage{cleveref}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\RequirePackage{colortbl}
+\RequirePackage{tcolorbox}
+\RequirePackage[
+	left=1.25cm,
+	right=1.25cm,
+	top=2cm,
+	bottom=2cm,
+	headsep=0.75cm,
+	% showframe
+]{geometry}
+
+%----------------------------------------------------------
+% Misc 
+%----------------------------------------------------------
+
+\renewcommand{\ttdefault}{lmtt}
+
+%----------------------------------------------------------
+% Tau environments
+%----------------------------------------------------------
+
+\newmdenv[
+	backgroundcolor=taublue!22, 					
+	linecolor=taublue,									
+	linewidth=0.7pt,
+	frametitle=\vskip0pt\bfseries,
+	frametitlerule=false,
+	frametitlefont=\color{taublue}\bfseries\sffamily,			
+	frametitlealignment=\raggedright,
+	innertopmargin=3pt,
+	innerbottommargin=6pt,
+	innerleftmargin=6pt,
+	innerrightmargin=6pt,
+	font=\selectfont,
+	fontcolor=taublue,									
+	frametitleaboveskip=8pt,
+	skipabove=10pt
+]{tauenv}
+
+%----------------------------------------------------------
+
+\newcommand{\infolanguage}{
+    {\bfseries\noindent Information}%
+}
+
+\newmdenv[
+    backgroundcolor=taublue!22, 						
+    linecolor=taublue,									
+    linewidth=0.7pt,
+    frametitle=\vskip0pt\bfseries\infolanguage,
+    frametitlerule=false,
+    frametitlefont=\color{taublue}\bfseries\sffamily,			
+    frametitlealignment=\raggedright,
+    innertopmargin=3pt,
+    innerbottommargin=6pt,
+    innerleftmargin=6pt,
+    innerrightmargin=6pt,
+    font=\normalfont,
+    fontcolor=taublue,									
+    frametitleaboveskip=3pt,
+    skipabove=10pt
+]{info}
+
+%----------------------------------------------------------
+
+\newcommand{\notelanguage}{
+    {\bfseries\noindent Note}%
+}
+
+\newmdenv[
+    backgroundcolor=taublue!22, 						
+    linecolor=taublue,									
+    linewidth=0.7pt,
+    frametitle=\vskip0pt\bfseries\notelanguage,
+    frametitlerule=false,
+    frametitlefont=\color{taublue}\bfseries\sffamily,			
+    frametitlealignment=\raggedright,
+    innertopmargin=3pt,
+    innerbottommargin=6pt,
+    innerleftmargin=6pt,
+    innerrightmargin=6pt,
+    font=\normalfont,
+    fontcolor=taublue,									
+    frametitleaboveskip=3pt,
+    skipabove=10pt
+]{note}
+
+
+\endinput

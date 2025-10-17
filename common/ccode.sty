@@ -9,13 +9,14 @@
 % - Python                                                           %
 % - Bash                                                             %
 % - SystemVerilog                                                    %
+% - Matlab                                                           %
 % - OCaml                                                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{ccode}[2025/01/01 ccode]
 
-\RequirePackage{cincludes} % ALL REQUIRED PACKAGES
+\RequirePackage{ccolors}
+\RequirePackage{listings}
 
 \newcommand{\noncopynumber}[1]{ % keep line numbers from being copied in code listings
   \BeginAccSupp{method=escape,ActualText={}}
@@ -111,3 +112,31 @@
   morecomment=[s]{(*}{*)},
   morestring=[b]"`
 }
+
+% ------------------------------
+% Style for code 
+% ------------------------------
+\lstdefinestyle{taucoding}{
+  backgroundcolor=\color{taucodeback},
+  commentstyle=\color{taucodecomment},
+  keywordstyle=\bf\color{taucodekey},
+  numberstyle=\tiny\color{taugray},
+  stringstyle=\color{taucodestring},
+  basicstyle=\footnotesize\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  aboveskip=10pt,
+  belowskip=15pt,
+  xleftmargin=9pt,
+  rulecolor=\color{taugray},
+}
+
+\lstset{style=taucoding}
