@@ -4,7 +4,6 @@
 
 \ProvidesClass{presentation}[2025/01/01 presentation]
 
-% Load beamer as the base class
 \LoadClass[notheorems,aspectratio=54]{beamer}
 
 \usepackage{latexsym}
@@ -16,7 +15,7 @@
 \usepackage{amsthm}
 \usepackage{animate} % insert gif
 \usepackage{lipsum} % To generate test text 
-\usepackage{ulem} % 下划线，波浪线
+\usepackage{ulem} 
 \usepackage{listings} % display code on slides; don't forget [fragile] option after \begin{frame}
 
 % ----------------------------------------------

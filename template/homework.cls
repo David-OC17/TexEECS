@@ -1,16 +1,9 @@
-%% homework.cls  Copyright (C) 2018  Ahmad Tashfeen
-%% This program comes with ABSOLUTELY NO WARRANTY.
-%% This is free software, and you are welcome to
-%% redistribute it under certain conditions; read
-%% file COPYING for more details.
-
-% Put in /usr/local/texlive/texmf-local/tex/latex/local
-% And then re-index, see: tex.stackexchange.com/q/1137/215221
-% Latex documentation: https://en.wikibooks.org/wiki/LaTeX
-% 'em' is the horizontal space unit and 'ex' is the vertical
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                          Homework  Template                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{homework}[2024/01/01 Homework]
+\ProvidesClass{homework}[2024/01/01 Homework Template]
 
 \def\hw@ptsize{12pt} % https://tex.stackexchange.com/a/634138/215221
 \DeclareOption{10pt}{\def\hw@ptsize{10pt}}
@@ -39,7 +32,6 @@
     pdfsubject={\@class}
   }
 }
-
 
 \gdef\@author{\empty}
 \gdef\@class{\empty}
